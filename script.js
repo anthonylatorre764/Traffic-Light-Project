@@ -1,34 +1,41 @@
 console.log("testing123")
 
-function normalCycle() {
-    document.getElementById("traffic_light").src="images/traffic_light_phases/green_arrow.png";
+const lightColors = [
+    "images/traffic_light_phases/green_arrow.png",
+    "images/traffic_light_phases/yellow_arrow.png",
+    "images/traffic_light_phases/green_light.png",
+    "images/traffic_light_phases/yellow_light.png",
+    "images/traffic_light_phases/red_light.png"
+];
+const colorNames = ["Green Arrow", "Yellow Arrow", "Green", "Yellow", "Red"];
+const durations = [5000, 3000, 10000, 4000, 10000];
+let currentIndex = 0;
+let intervalId = null;
 
-    setTimeout(() => {
-        document.getElementById("traffic_light").src="images/traffic_light_phases/yellow_arrow.png";
-    }, 3000);
 
-    setTimeout(() => {
-        document.getElementById("traffic_light").src="images/traffic_light_phases/green_light.png";
-    }, 6000);
 
-    setTimeout(() => {
-        document.getElementById("traffic_light").src="images/traffic_light_phases/yellow_light.png";
-    }, 9000);
 
-    setTimeout(() => {
-        document.getElementById("traffic_light").src="images/traffic_light_phases/red_light.png";
-    }, 12000);
+function changeLight() {
+    console.log(`Current Light: ${colorNames[currentIndex]}`);
+    document.getElementById("trafficLight").src=lightColors[currentIndex];
+    
+    clearInterval(intervalId);
+    intervalId = setInterval(changeLight, durations[currentIndex]);
+    
+    currentIndex = (currentIndex + 1) % lightColors.length;
 }
-
-
 
 
 function startCycle() {
-    normalCycle();
-    const intervalID = setInterval(normalCycle, 15000);                         // passes a reference to the function normalCycle (instead of calling it immediately)
+    console.log("The light cycle has started.")
+    if (!intervalId) {
+        intervalId = setInterval(changeLight, durations[currentIndex]);
+    }
 }
 
-// Find a way to end the light cycle started by ^^ startCycle
+
 function endCycle() {
-    clearInterval(intervalID);
+    console.log("The light cycle has ended.")
+    clearInterval(intervalId);
+    intervalId = null;
 }
