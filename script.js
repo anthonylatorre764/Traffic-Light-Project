@@ -39,3 +39,34 @@ function endCycle() {
     clearInterval(intervalId);
     intervalId = null;
 }
+
+
+
+function flashYellow() {
+    console.log("The light is flashing yellow now.")
+    if (!intervalId) {
+        intervalId = setInterval(() => {
+            
+            document.getElementById("trafficLight").src=lightColors[3];
+            
+            setTimeout(() => {
+                document.getElementById("trafficLight").src="./images/traffic_light_phases/all_lights_off.png";
+            }, 900);
+        }, 1800);
+    }
+}
+
+
+function flashRed() {
+    console.log("The light is flashing red now.")
+    if (!intervalId) {
+        intervalId = setInterval(() => {
+            
+            document.getElementById("trafficLight").src=lightColors[4];
+            
+            setTimeout(() => {
+                document.getElementById("trafficLight").src="./images/traffic_light_phases/all_lights_off.png";
+            }, 900);
+        }, 1800);
+    }
+}

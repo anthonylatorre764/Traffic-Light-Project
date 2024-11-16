@@ -7,13 +7,34 @@
         <title>Traffic Light</title>
 
         <link rel="stylesheet" href="styles.css">
+        <script src="https://kit.fontawesome.com/f4860d9245.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <img id="trafficLight" src="images/traffic_light_phases/all_lights_on.png" 
         alt="a traffic light">
-
-        <button type="button" onclick="startCycle()">Start Normal Light Cycle</button>
-        <button type="button" onclick="endCycle()">End Cycle</button>
+        
+        
+        <div id="controlPanel">
+            <h3 id="controlPanelTitle">Control Panel</h3>
+            <div class="modeContainer">
+                <div class="onLight"></div>
+                <span class="modeName">Normal Cycle Mode</span>
+                <button id="normalStart" class="startBtn" type="button" onclick="startCycle()">Start</button>
+                <button class="stopBtn" type="button" onclick="endCycle()">End</button>
+            </div>
+            <div class="modeContainer">
+                <div class="onLight"></div>
+                <span class="modeName">Flashing Yellow Mode</span>
+                <button id="yellowStart" class="startBtn" type="button" onclick="flashYellow()">Start</button>
+                <button class="stopBtn" type="button" onclick="endCycle()">End</button>
+            </div>
+            <div class="modeContainer">
+                <div class="onLight"></div>
+                <span class="modeName">Flashing Red Mode</span>
+                <button id="redStart" class="startBtn" type="button" onclick="flashRed()">Start</button>
+                <button class="stopBtn" type="button" onclick="endCycle()">End</button>
+            </div>
+        </div>
 
         <script src="script.js"></script>
     </body>
